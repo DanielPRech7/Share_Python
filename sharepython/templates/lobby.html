@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Python</title>
+    <style>
+        .button {
+            display: inline-block;
+            padding: 25px 50px;
+            font-size: 24px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            margin: 20px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: row; /* Altere de column para row para que os botões fiquem lado a lado */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Share Python</h1>  <!-- Título alterado para Share Python -->
+        <a href="{% url 'resumo' %}" class="button">Resumo</a>
+        <a href="{% url 'nova_tarefa' %}" class="button">Nova Tarefa</a>
+    </div>
+</body>
+</html>
