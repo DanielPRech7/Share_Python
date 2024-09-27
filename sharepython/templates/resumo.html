@@ -1,13 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resumo</title>
+    <style>
+        /* Estilos para ocultar as listas por padrão */
+        .lista-oculta {
+            display: none;
+        }
+        /* Estilos opcionais para os botões */
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Resumo</h1>
-    <p>Aqui vai o resumo das tarefas.</p>
-    <a href="{% url 'lobby' %}">Voltar ao Lobby</a>
+    <h1>Resumo de Itens Criados</h1>
+
+    <div>
+        <!-- Botões para mostrar as listas -->
+        <button class="button" onclick="mostrarLista('tarefa')">Nova Tarefa</button>
+        <button class="button" onclick="mostrarLista('atividade')">Nova Atividade</button>
+    </div>
+
+    <!-- Lista de Nova Tarefa -->
+    <div id="lista-tarefa" class="lista-oculta">
+        <h2>Nova Tarefa</h2>
+        <ul>
+            {% for item in itens %}
+            <li>{{ item.nome }}</li>
+            {% empty %}
+            <li>Nenhuma tarefa criada.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Lista de Nova Atividade -->
+    <div id="lista-atividade" class="lista-oculta">
+        <h2>Nova Atividade</h2>
+        <ul>
+            {% for atividade in atividades %}
+            <li>{{ atividade.cidade }}</li>
+            {% empty %}
+            <li>Nenhuma atividade criada.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- JavaScript para controlar a visibilidade das listas -->
+    <script>
+        function mostrarLista(tipo) {
+            // Oculta todas as listas
+            document.getElementById('lista-tarefa').style.display = 'none';
+            document.getElementById('lista-atividade').style.display = 'none';
+
+            // Exibe a lista correspondente ao botão clicado
+            if (tipo === 'tarefa') {
+                document.getElementById('lista-tarefa').style.display = 'block';
+            } else if (tipo === 'atividade') {
+                document.getElementById('lista-atividade').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>

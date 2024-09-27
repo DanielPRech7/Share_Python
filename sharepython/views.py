@@ -7,8 +7,21 @@ def lobby_view(request):
     return render(request, 'lobby.html')
 
 def resumo_view(request):
-    return render(request, 'resumo.html')
+    filtro = request.GET.get('filtro', None)
 
+    if filtro == 'nova_tarefa':
+        itens = Item.objects.all()
+        atividades = None  # Não mostrar atividades
+
+    elif filtro == 'nova_atividade':
+        atividades = Atividade.objects.all()
+        itens = None  # Não mostrar itens
+
+    else:
+        itens = Item.objects.all()
+        atividades = Atividade.objects.all()
+
+    return render(request, 'resumo.html', {'itens': itens, 'atividades': atividades, 'filtro': filtro})
 def nova_tarefa_view(request):
     itens = Item.objects.all()
     return render(request, 'nova_tarefa.html', {'itens': itens})
@@ -56,3 +69,21 @@ def cadastrar_atividade_view(request):
         form = AtividadeForm()
 
     return render(request, 'cadastrar_atividade.html', {'form': form})
+
+def editar_atividade_view(request, atividade_id):
+    atividade = Atividade.objects.get(id=atividade_id)
+    if request.method == 'POST':
+        form = AtividadeForm(request.POST, instance=atividade)
+        if form.is_valid():
+            form.save()
+            return redirect('atividades')
+    else:
+        form = AtividadeForm(instance=atividade)
+    return render(request, 'editar_atividade.html', {'form': form, 'atividade': atividade})
+
+def excluir_atividade_view(request, atividade_id):
+    atividade = Atividade.objects.get(id=atividade_id)
+    if request.method == 'POST':
+        atividade.delete()
+        return redirect('atividades')
+    return render(request, 'excluir_atividade.html', {'atividade': atividade})

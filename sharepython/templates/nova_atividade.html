@@ -8,10 +8,15 @@
     <h1>Lista de Atividades</h1>
 
     <a href="{% url 'cadastrar_atividade' %}"><button type="button">Nova Tarefa</button></a>
+    
 
     <ul>
         {% for atividade in atividades %}
-        <li>{{ atividade.cidade }}</li>
+        <li>
+            {{ atividade.cidade }}
+            <a href="{% url 'editar_atividade' atividade.id %}"><button type="button">Editar</button></a>
+            <a href="{% url 'excluir_atividade' atividade.id %}"><button type="button">Excluir</button></a>
+        </li>
         {% empty %}
         <li>Nenhuma atividade cadastrada.</li>
         {% endfor %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Atividade</title>
+</head>
+<body>
+    <h1>Tem certeza que deseja excluir esta atividade?</h1>
+    <p>{{ atividade.cidade }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Excluir</button>
+        <a href="{% url 'atividades' %}"><button type="button">Cancelar</button></a>
+    </form>
+</body>
+</html>
