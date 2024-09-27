@@ -3,6 +3,9 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from sharepython.views import lobby_view, resumo_view, nova_tarefa_view, cadastrar_item_view, editar_tarefa_view, excluir_tarefa_view, atividades_view, cadastrar_atividade_view, editar_atividade_view, excluir_atividade_view
+from django.contrib.auth import views as auth_views
+from sharepython import views as usuario_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,4 +19,7 @@ urlpatterns = [
     path('excluir_tarefa/<int:item_id>/', excluir_tarefa_view, name='excluir_tarefa'),
     path('editar_atividade/<int:atividade_id>/', editar_atividade_view, name='editar_atividade'),
     path('excluir_atividade/<int:atividade_id>/', excluir_atividade_view, name='excluir_atividade'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('registrar/', usuario_views.registrar, name='registrar'),
 ]
