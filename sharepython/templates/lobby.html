@@ -27,15 +27,16 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            flex-direction: row; /* Altere de column para row para que os botões fiquem lado a lado */
+            flex-direction: row;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Share Python</h1>  <!-- Título alterado para Share Python -->
+        <h1>Share Python</h1>
         <a href="{% url 'resumo' %}" class="button">Resumo</a>
         <a href="{% url 'nova_tarefa' %}" class="button">Nova Tarefa</a>
+        <a href="{% url 'atividades' %}" class="button">Nova Atividade</a>  <!-- Botão "Nova Atividade" -->
     </div>
 </body>
 </html>

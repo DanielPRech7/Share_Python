@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova Tarefa</title>
 </head>
 <body>
-    <h1>Nova Tarefa</h1>
-    <p>Formulário para criar uma nova tarefa aqui.</p>
-    <a href="{% url 'lobby' %}">Voltar ao Lobby</a>
+    <h1>Lista de Tarefas</h1>
+
+    <a href="{% url 'cadastrar_item' %}"><button type="button">Nova Tarefa</button></a>
+    <ul>
+        {% for item in itens %}
+        <li>
+            {{ item.nome }}
+            <a href="{% url 'editar_tarefa' item.id %}"><button type="button">Editar</button></a>
+            <a href="{% url 'excluir_tarefa' item.id %}"><button type="button">Excluir</button></a>
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
